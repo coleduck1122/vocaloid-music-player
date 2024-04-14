@@ -14,7 +14,9 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "element-plus": "^2.7.0",
+    "vue": "^3.2.13",
+    "vue-router": "next"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

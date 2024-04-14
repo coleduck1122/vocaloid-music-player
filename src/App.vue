@@ -1,6 +1,28 @@
+<script setup lang="ts">
+
+
+
+</script>
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <div style="height: 100%;position: relative;z-index: auto">
+    <div id="box">
+      <Aside></Aside>
+      <div class="main">
+        <Header></Header>
+        <div class="body">
+          <div class="top"></div>
+          <router-view v-slot="{Component}">
+            <!--          <keep-alive>-->
+            <component :is="Component"></component>
+            <!--          </keep-alive>-->
+          </router-view>
+        </div>
+      </div>
+    </div>
+    <div style="height: 20px"></div>
+  </div>
 </template>
 
 <script>
