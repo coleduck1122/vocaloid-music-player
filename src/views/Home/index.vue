@@ -13,7 +13,8 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 
 
 <template>
-  <div class="padding-container">
+  HEwdlawdlwa
+<!-- <div class="padding-container">
     <List :count="2">
       <div>
         <div class="test">111</div>
@@ -25,7 +26,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
         <component v-if="item.name === activeName" :is="item.component"></component>
       </tab-pane>
     </tabs>
-  </div>
+  </div> -->
 </template>
 
 <style lang="less" scoped>

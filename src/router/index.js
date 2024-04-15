@@ -9,48 +9,48 @@ const router = createRouter({
   routes: routes,
   scrollBehavior: () => ({top: 0,})
 })
-// const originPush = router.push
-// const flags = useFlags(pinia)
-// router.push = (params) => {
-//   let to
-//   let count = +router.currentRoute.value.query.count!
-//   if(typeof params === 'string') {
-//     const result = parsePathQuery(params)
-//     to = {
-//       path: result.path,
-//       query: {
-//         count: ++count,
-//         ...result.query,
-//       }
-//     }
-//   } else {
-//     to = {
-//       ...params,
-//       query: {
-//         ...params.query,
-//         count: ++count
-//       }
-//     }
-//   }
-//   return originPush(to)
-// }
+const originPush = router.push
+const flags = useFlags(pinia)
+router.push = (params) => {
+  let to
+  let count = +router.currentRoute.value.query.count ?? 0;
+  if(typeof params === 'string') {
+    const result = parsePathQuery(params)
+    to = {
+      path: result.path,
+      query: {
+        count: ++count,
+        ...result.query,
+      }
+    }
+  } else {
+    to = {
+      ...params,
+      query: {
+        ...params.query,
+        count: ++count
+      }
+    }
+  }
+  return originPush(to)
+}
 
-// router.beforeEach((to, from, next) => {
-//   const count = to.query.count
-//   if(!count) {
-//     next({
-//       ...to,
-//       query: {
-//         ...to.query,
-//         count: 1,
-//       }
-//     })
-//   } else {
-//     if(+count > flags.maxCount) {
-//       flags.maxCount = +count
-//     }
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  const count = to.query.count
+  if(!count) {
+    next({
+      ...to,
+      query: {
+        ...to.query,
+        count: 1,
+      }
+    })
+  } else {
+    if(+count > flags.maxCount) {
+      flags.maxCount = +count
+    }
+    next()
+  }
+})
 
 export default router

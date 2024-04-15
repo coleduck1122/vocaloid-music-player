@@ -6,11 +6,11 @@ import Singer from './components/Singer.vue'
 import NewestMusic from './components/NewestMusic.vue'
 
 export const tabsConfig = [
-  {
-    label: '个性推荐',
-    name: 'individual',
-    component: Individual
-  },
+  // {
+  //   label: '个性推荐',
+  //   name: 'individual',
+  //   component: Individual
+  // },
   {
     label: '专属定制',
     name: 'custom',
