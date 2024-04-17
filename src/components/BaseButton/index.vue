@@ -1,14 +1,17 @@
-<script setup lang="ts">
-import {withDefaults} from "vue";
+<script setup>
+const props = {
+  type: {
+    type: String,
+    default: 'default'
+  }
+};
 
-interface Props {
-  type?: 'default' | 'subject'
-}
-const props = withDefaults(defineProps<Props>(), {
-  type: 'default'
-})
-const emit = defineEmits(['click'])
-
+const emit = (event, ...args) => {
+  if (typeof event === 'string') {
+    event = `update:${event}`;
+  }
+  return $emit(event, ...args);
+};
 </script>
 
 <template>

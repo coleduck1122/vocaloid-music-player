@@ -1,22 +1,32 @@
-<script setup lang="ts" name="Tabs">
-import {computed} from "vue";
+<script setup name="Tabs">
+import { computed, onMounted } from "vue";
 
-interface Props {
-  modelValue: string
-}
-const props = defineProps<Props>()
-const emit = defineEmits(['update:modelValue',])
+const props = {
+  modelValue: String
+};
+
+const emit = (event, ...args) => {
+  if (typeof event === 'string') {
+    event = `update:${event}`;
+  }
+  return $emit(event, ...args);
+};
 
 const activeName = computed({
   get() {
-    return props.modelValue
+    return props.modelValue;
   },
   set(val) {
-    emit('update:modelValue', val)
+    emit('modelValue', val);
   }
-})
+});
 
+// 可选的，在组件挂载时触发一次 modelValue 的更新事件
+onMounted(() => {
+  emit('modelValue', props.modelValue);
+});
 </script>
+
 
 <template>
   <el-tabs class="bass-tabs" v-model="activeName" v-bind="$attrs">

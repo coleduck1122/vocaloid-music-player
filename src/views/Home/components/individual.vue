@@ -1,33 +1,32 @@
-<script setup lang="ts">
+<script setup>
 import { reactive } from "vue";
-import { Recommend, recommendSongList } from "@/api/home";
+import { recommendSongList } from "@/api/home";
 import CardChunk from '@/components/CardChunk/index.vue'
 import { useRouter } from "vue-router";
 
-const recommendSongs = 'recommendSongs'
-interface State {
-  recommend: Recommend[]
-  loading: boolean
-}
-const state = reactive<State>({
+const recommendSongs = 'recommendSongs';
+
+const state = reactive({
   recommend: [],
   loading: false,
-})
-const router = useRouter()
-async function init() {
-  state.loading = true
-  const {recommend} = await recommendSongList()
-  state.loading = false
-  state.recommend = recommend
-}
-init()
+});
 
-const playDetailList = (item: Recommend | typeof recommendSongs) => {
-  // 类型保护
-  const id = (<Recommend>item).id || item
-  router.push(`/daily-recommend?id=${id}`)
+const router = useRouter();
+
+async function init() {
+  state.loading = true;
+  const { recommend } = await recommendSongList();
+  state.loading = false;
+  state.recommend = recommend;
 }
+init();
+
+const playDetailList = (item) => {
+  const id = item.id || item;
+  router.push(`/daily-recommend?id=${id}`);
+};
 </script>
+
 
 <template>
   <div v-loading="state.loading" class="container">

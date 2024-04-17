@@ -1,14 +1,13 @@
-<script setup lang="ts" name="Home">
-import { ref } from 'vue'
-import type { TabsPaneContext } from 'element-plus'
-import { tabsConfig } from './config'
-import List from '@/components/List/index.vue'
+<script setup name="Home">
+import { ref } from 'vue';
+import { tabsConfig } from './config';
+import List from '@/components/List/index.vue';
 
-const activeName = ref(tabsConfig[0].name)
+const activeName = ref(tabsConfig[0].name);
 
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  
-}
+const handleClick = (tab, event) => {
+  // 在此处添加处理点击事件的逻辑
+};
 </script>
 
 

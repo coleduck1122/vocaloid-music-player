@@ -1,17 +1,16 @@
-<script setup lang="ts">
-interface Props {
-  picUrl?: string
-  name?: string
-  isClick?: boolean,
-  isStartIcon?: boolean
+<script setup>
+const props = {
+  picUrl: String,
+  name: String,
+  isClick: Boolean,
+  isStartIcon: Boolean
 }
-const emit = defineEmits(['click'])
-const props = defineProps<Props>()
 
 const clickHandler = () => {
   emit('click')
 }
 </script>
+
 
 <template>
   <div class="card-box">

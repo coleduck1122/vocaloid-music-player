@@ -1,8 +1,7 @@
-<script setup lang="ts">
-interface Props {
+<script setup>
+const props = {
   count: number
-}
-const props = defineProps<Props>()
+};
 </script>
 
 <template>

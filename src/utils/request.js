@@ -24,17 +24,19 @@ http.interceptors.request.use((config) => {
 });
 
 http.interceptors.response.use((response) => {
-  const { status, data: { code } } = response;
-  const url = response.config.url?.split('?')[0]!;
+  const { status, data } = response;
+  const code = data && data.code;
+  const url = response.config.url ? response.config.url.split('?')[0] : '';
   if (!ignoreState.includes(url) && (status !== 200 || code !== 200)) {
-    ElMessage.error(response.data.message || `请求出现错误，当前状态码为${code}`);
-    return Promise.reject(response.data);
+    ElMessage.error(data.message || `请求出现错误，当前状态码为${code || status}`);
+    return Promise.reject(data);
   }
-  return response.data;
+  return data;
 }, (error) => {
   ElMessage.error(error.message);
   return Promise.reject(error.response.data);
 });
+
 
 const request = (url, method, config) => {
   if (typeof url !== "string") {

@@ -1,7 +1,5 @@
-<script setup lang="ts" name="TabPane">
-interface Props {
-}
-const props = defineProps<Props>()
+<script setup name="TabPane">
+const props = { };
 </script>
 
 <template>
